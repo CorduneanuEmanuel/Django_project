@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{{title}}</title>
+        <link rel="icon" type="image/x-icon" href="{% static 'images/logo_pagina.ico' %}">
+    </head>
+    <body>
+        <header>
+            <div class="header-container">
+
+                <div class="logo">
+                    <a href="{% url 'pagina_principala' %}">
+                        <img src="imagini/logo.png" alt="Logo Magazin Bricolaj">
+                    </a>
+                </div>
+            
+                <nav class="main-nav">
+                    <ul>
+                        
+                        <li class="dropdown">
+                            <a href="{% url 'pagina_principala' %}">Acasa</a>
+                            <ul class="submenu">
+                                <li><a href="{% url 'pagina_principala' %}#categorii-principale">Categorii Produse</a></li>
+                                <li><a href="{% url 'pagina_principala' %}#produse-populare">Produse Populare</a></li>
+                                <li><a href="{% url 'pagina_principala' %}#promotii-active">Promotii Active</a></li>
+                                <li><a href="{% url 'pagina_principala' %}#avantaje">De ce sa ne alegi</a></li>
+                                <li><a href="{% url 'pagina_principala' %}#orar-functionare">Orar functionare</a></li>
+                            </ul>
+                        </li>
+                    
+                        
+                        <li class="dropdown">
+                            <a href="{% url 'despre' %}">Despre Noi</a>
+                            <ul class="submenu">
+                                <li><a href="{% url 'despre' %}#povestea-noastra">Povestea Noastra</a></li>
+                                <li><a href="{% url 'despre' %}#misiune-valori">Misiunea si Valorile</a></li>
+                            </ul>
+                        </li>
+                    
+                        
+                        <li><a href="{% url 'istoric' %}">Istoric</a></li>
+                    
+                        <li><a href="{% url 'produse' %}">Produse</a></li>
+                    
+                    
+                        <li><a href="{% url 'contact' %}">Contact</a></li>
+                    
+                        <li><a href="{% url 'cos_virtual' %}">Cos Cumparaturi</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+                                                               
+        <main>
+            <!-- <p>Aceasta este o pagina generica</p> -->
+        </main>
+        <footer>
+            
+        </footer>
+    </body>
+</html>
