@@ -29,6 +29,15 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+COMPANY_INFO = {
+    'name': 'Surub Expert',
+    'founded_year': 2024,
+    'phone': '+40 700 000 000',
+    'address': 'Strada Exemplului nr. 10, Bucuresti',
+    'email': 'contact@surubexpert.ro',
+    'specialty': 'Suruburi, scule si accesorii de bricolaj',
+}
+
 
 # Application definition
 
@@ -55,6 +64,21 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'magazin.urls'
 
+
+
+def ctx_processor_footer(request):
+    return {
+        'CUI': "43094943",
+        'an_infiintare' : "2025",
+        'telefon' : '+4074394324',
+        'numele' : 'Surub Expert',
+        'adresa' : 'Strada Sucevei, nr 80, Falticeni, Suceava',
+        'email' : 'contact@surubexpert.ro',
+        'title' : 'Surub Expert',
+    }
+    
+
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -65,6 +89,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # 'aplicatie_magazin.context_processors.company_info',
+                'magazin.settings.ctx_processor_footer',
             ],
         },
     },

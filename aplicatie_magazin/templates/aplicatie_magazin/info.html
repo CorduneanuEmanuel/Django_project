@@ -1,0 +1,19 @@
+{% extends "aplicatie_magazin/baza.html" %}
+
+{% block content %}
+
+	<section>
+		<head>
+	    
+	    	<title>Informatii despre server</title>
+		</head>
+		<body>
+	    	<h1>Informatii despre server</h1>
+		
+			<h2>Data si ora despre server: {{ request.accesare.data_accesare | safe }}</h2>
+			
+		</body>
+	</section>
+
+
+{% endblock %}

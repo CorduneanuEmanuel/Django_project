@@ -1,0 +1,32 @@
+{% extends "aplicatie_magazin/baza.html" %}
+{% load static %}
+{% block content %}
+
+<section>
+    <h1>Despre magazinul nostru</h1>
+
+        <section id="povestea-noastra">
+            <h2>Povestea Noastra</h2>
+            <p>Suntem un magazin specializat in produse
+            de surubarie si bricolaj.</p>
+
+            <p>Oferim suruburi de diferite dimensiuni,
+            piulite, saibe, dibluri, scule si accesorii
+            necesare pentru reparatii si constructii.</p>
+        
+            <img src="{% static 'images/secund.png' %}" alt="Girl in a jacket" width="500" height="600"> 
+        </section>
+
+        <section id="misiune-valori">
+            <h2>Misiunea si Valorile</h2>
+            <p>Scopul nostru este sa ajutam clientii
+            sa gaseasca produsele potrivite pentru
+            proiectele lor.</p>
+        </section>
+
+
+</section>
+	
+		
+	
+{% endblock %}

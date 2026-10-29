@@ -1,0 +1,174 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI';
+    background-color: #eef4f7;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.site-header {
+    background-color: #16324f;
+    position: sticky;
+    top: 0;
+}
+
+.header-container {
+    width: 100%;
+    padding: 0 32px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    /* position: relative; */
+}
+
+.main-nav {
+    left: 50%;
+    position: absolute;
+    height: 100%;
+    transform: translateX(-50%);
+}
+
+.main-nav > ul {
+    list-style: none;
+    display: flex;
+    height: 100%;
+    
+}
+
+.main-nav > ul > li {
+    position: relative;
+    width: 150px;
+    height: 100%;
+}
+
+.main-nav .submenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    padding: 6px 0;
+    margin-top: 0;
+    background-color: #244b69;
+    border: 1px solid #326789;
+    border-radius: 0;
+    list-style: none;
+    display: none;
+}
+
+.main-nav > ul > li > a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 8px 10px;
+    /* border: 1px solid transparent; */
+    border-radius: 0;
+    font-size: 15px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.main-nav > ul > li > a:hover {
+    background-color: #2a9d8f;
+    border-color: #58c4b8;
+    color: #ffffff;
+}
+
+.main-nav .submenu li a {
+    display: block;
+    padding: 9px 10px;
+    color: #f4fbfc;
+    text-align: center;
+    /* line-height: 1.25;  */
+}
+
+
+.main-nav .submenu li a:hover {
+    background-color: #2a9d8f;
+    color: #ffffff;
+}
+
+.main-nav .dropdown:hover > .submenu {
+    display: block;
+}
+
+.main-nav a,
+.main-nav a:visited,
+.main-nav a:active {
+    color: #f4fbfc;
+    text-decoration: none;
+}
+
+.logo {
+    margin-left: auto;
+    /* margin-right: 8px; */
+    max-width: 100%;
+}
+
+.logo a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+.logo a img {
+    /* display: block; */
+    width: auto;
+    height: auto;
+    max-width: 50px;
+    max-height: 50px;
+}
+
+.logo a span {
+    color: #00adb5; 
+}
+
+
+
+
+
+.dropdown {
+    position: relative; 
+}
+
+footer {
+    margin-top: auto;
+    padding: 12px 32px;
+    background-color: #16324f;
+    color: #f4fbfc;
+    text-align: center;
+    font-size: 13px;
+    /* display: flex; */
+    /* align-items: stretch; */
+}
+
+footer p {
+    margin: 0;
+}
+
+.footer-copyright {
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+
+.footer-info {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+}
+
+.footer-info > div {
+    min-width: 220px;
+}
+

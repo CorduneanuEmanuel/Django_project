@@ -34,7 +34,7 @@ REQUESTS = 0
 
 
 def index(request):
-	return HttpResponse("Primul raspuns")
+	return render(request, "aplicatie_magazin/pagina_principala.html")
 
 
 def calculeaza_data(data = ''):
@@ -56,9 +56,9 @@ def info(request):
 
 	# curent_day_romanian = curent_day[0] + ', ' + " ".join(curent_day[1:])
 
-	data_request = request.GET.get("data")
+	# data_request = request.GET.get("data")
 	
-
+	request.accesare.data_accesare = calculeaza_data(request.GET.get("data"))
 
 	html = f"""
 	<!DOCTYPE html>
@@ -75,7 +75,7 @@ def info(request):
 		</body>
 	</html>
 	"""
-	return HttpResponse(html)
+	return render(request, "aplicatie_magazin/info.html")
 
 
 
@@ -201,21 +201,19 @@ def log(request):
 
 
 	
-	html = f"""
-		<!DOCTYPE html>
-		<html>
-			<head>
-			
-				<title>Log</title>
-			</head>
-			<body>
-				<h1>Logging</h1>
-				{mesaj}
+	# html = f"""
+	# 			{mesaj}
 				
-			</body>
-		</html>
-		"""
-	return HttpResponse(html)
+	# 		</body>
+	# 	</html>
+	# 	"""
+	# {mesaj}
+	
+	context = {
+		"mesaj" : mesaj
+	}
+	
+	return render(request, 'aplicatie_magazin/log.html', context)
 
 
 
@@ -233,28 +231,34 @@ def istoric(request):
         
     	"""
 
-	return HttpResponse(html)
+	return render(request, "pagina_principala/istoric.html")
 
 
 def despre(request):
 	html = """
         <h1>Despre magazinul nostru</h1>
 
-        <p>Suntem un magazin specializat in produse
-        de surubarie si bricolaj.</p>
+        <section id="povestea-noastra">
+            <h2>Povestea Noastra</h2>
+            <p>Suntem un magazin specializat in produse
+            de surubarie si bricolaj.</p>
 
-        <p>Oferim suruburi de diferite dimensiuni,
-        piulite, saibe, dibluri, scule si accesorii
-        necesare pentru reparatii si constructii.</p>
+            <p>Oferim suruburi de diferite dimensiuni,
+            piulite, saibe, dibluri, scule si accesorii
+            necesare pentru reparatii si constructii.</p>
+        </section>
 
-        <p>Scopul nostru este sa ajutam clientii
-        sa gaseasca produsele potrivite pentru
-        proiectele lor.</p>
+        <section id="misiune-valori">
+            <h2>Misiunea si Valorile</h2>
+            <p>Scopul nostru este sa ajutam clientii
+            sa gaseasca produsele potrivite pentru
+            proiectele lor.</p>
+        </section>
 
        
     """
 
-	return HttpResponse(html)
+	return render(request, 'aplicatie_magazin/despre.html')
 
 
 def accesare(request, id):
@@ -271,10 +275,11 @@ def accesare(request, id):
 
 
 
-def baza(request):
+def in_lucru(request):
 	PARAMS = {
-		"title" : "Pagina principala"
+		'title' : 'In lucru'
+
 	}
-	return render(request, "aplicatie_magazin/baza.html", PARAMS)
+	return render(request, "aplicatie_magazin/in_lucru.html", PARAMS)
 
 	

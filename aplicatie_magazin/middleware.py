@@ -75,6 +75,10 @@ class Accesare:
         else:
             return request.META.get('REMOTE_ADDR')
 
+
+    def get_ip_instance(self):
+        return self.ip_client
+
     def get_url(self):
         return self.url
 

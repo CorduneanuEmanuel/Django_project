@@ -4,35 +4,32 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{{title}}</title>
+        <title>{{ title }}</title>
         <link rel="icon" type="image/x-icon" href="{% static 'images/logo_pagina.ico' %}">
+        <link rel="stylesheet" href="{% static 'css/nav.css' %}">
+        
     </head>
     <body>
-        <header>
-            <div class="header-container">
-
-                <div class="logo">
-                    <a href="{% url 'pagina_principala' %}">
-                        <img src="imagini/logo.png" alt="Logo Magazin Bricolaj">
-                    </a>
-                </div>
-            
+        <header class = "site-header">
+            <div class = "header-container">
                 <nav class="main-nav">
                     <ul>
                         
                         <li class="dropdown">
+                            {% url 'pagina_principala' as principala %}
                             <a href="{% url 'pagina_principala' %}">Acasa</a>
                             <ul class="submenu">
-                                <li><a href="{% url 'pagina_principala' %}#categorii-principale">Categorii Produse</a></li>
-                                <li><a href="{% url 'pagina_principala' %}#produse-populare">Produse Populare</a></li>
-                                <li><a href="{% url 'pagina_principala' %}#promotii-active">Promotii Active</a></li>
-                                <li><a href="{% url 'pagina_principala' %}#avantaje">De ce sa ne alegi</a></li>
-                                <li><a href="{% url 'pagina_principala' %}#orar-functionare">Orar functionare</a></li>
+                                <li><a href="{{ principala }}#categorii-principale">Categorii Produse</a></li>
+                                <li><a href="{{ principala }}#produse-populare">Produse Populare</a></li>
+                                <li><a href="{{ principala }}#promotii-active">Promotii Active</a></li>
+                                <li><a href="{{principala}}#avantaje">De ce sa ne alegi</a></li>
+                                <li><a href="{{principala}}#orar-functionare">Orar functionare</a></li>
                             </ul>
                         </li>
                     
                         
                         <li class="dropdown">
+                            
                             <a href="{% url 'despre' %}">Despre Noi</a>
                             <ul class="submenu">
                                 <li><a href="{% url 'despre' %}#povestea-noastra">Povestea Noastra</a></li>
@@ -51,14 +48,32 @@
                         <li><a href="{% url 'cos_virtual' %}">Cos Cumparaturi</a></li>
                     </ul>
                 </nav>
+
+                <div class="logo">
+                    <a href="{% url 'pagina_principala' %}">
+                        Surub Expert
+                        <img src="{% static 'images/logo_pagina.ico' %}" alt="Logo Surub Expert">
+                    </a>
+                </div>
             </div>
         </header>
                                                                
         <main>
-            <!-- <p>Aceasta este o pagina generica</p> -->
+            {% block content %}{%endblock%}
         </main>
         <footer>
-            
+            <p class="footer-copyright">&copy; {{ an_infiintare }} {{ numele }}. Toate drepturile rezervate.</p>
+            <div class="footer-info">
+                <div>
+                    <p>Adresă: {{ adresa }}</p>
+                    <p>CUI: {{ CUI }}</p>
+                    <p>Adresa IP: {{ request.accesare.get_ip_instance }}</p>
+                </div>
+                <div>
+                    <p>Telefon: {{ telefon }}</p>
+                    <p>Email: {{ email }}</p>
+                </div>
+            </div>
         </footer>
     </body>
 </html>

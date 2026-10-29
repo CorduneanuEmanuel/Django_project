@@ -1,0 +1,35 @@
+
+{% extends "aplicatie_magazin/baza.html" %}
+{% load static %}
+{% block content %}
+
+
+	<main>
+		<section id="categorii-principale">
+			<h2>Categorii principale</h2>
+			<p>Suruburi, scule, asamblare, protectie</p>
+		</section>
+
+		<section id="produse-populare">
+			<h2>Produse populare</h2>
+			<p>Alege produsele preferate</p>
+		</section>
+
+		<section id="promotii-active">
+			<h2>Promotii active</h2>
+			<p>Oferte pentru proiecte</p>
+		</section>
+
+		<section id="avantaje">
+			<h2>De ce sa ne alegi</h2>
+			<p>Beneficiezi de stocuri permanente, livrare rapida, consultanta tehnica de specialitate si produse cu calitate garantata.</p>
+			<img src="{% static 'images/secund.png' %}" alt="Girl in a jacket" width="500" height="600"> 
+		</section>
+
+		<section id="orar-functionare">
+			<h2>Orar functionare</h2>
+			<p>Program si transport disponibile</p>
+		</section>
+
+	</main>
+{% endblock %}
