@@ -1,9 +1,11 @@
 from django.http import HttpResponse
 from django.shortcuts import render 
+from django.contrib import messages
+from django.conf import settings
+from django.http import Http404
 from datetime import datetime
 from .middleware import Accesare
 import locale
-
 
 WEEK_DAY_ROMANIAN = (
 	"Luni",
@@ -83,8 +85,17 @@ def info(request):
 
 def log(request):
 
+	DEBUG = True
+	if not settings.DEBUG:
+		raise Http404("Pagina nu exista")
 
+	messages.debug(request, 'Suntem in mediul debug.')	
+	messages.info(request, "Site-ul este inca in functione, s-ar putea ca logging-ul sa nu functioneze cum e de dorit")
 	mesaj = ''
+
+
+
+
 	numar_accesari = len(Accesare.logs)
 
 	if 'ultimele' in request.GET:
@@ -95,6 +106,7 @@ def log(request):
 			
 
 			if n < 0:
+				messages.error(request, "Eroare, parametrul 'ultimele' trebuie sa fie pozitiv")
 				mesaj = 'Eroare, parametrul "ultimele" trebuie sa fie pozitiv'
 			
 			elif n > numar_accesari:
@@ -104,6 +116,7 @@ def log(request):
 			else:
 				mesaj += "".join(f'<p>{str(accesare)}</p>' for accesare in Accesare.logs[numar_accesari - n :])
 		except:
+			messages.error(request, "Eroare, nu ai introdus corect url-ul. Parametrul 'ultimele' trebuie sa fie numar intreg")
 			mesaj = 'Eroare, nu ai introdus corect url-ul. Parametrul \'ultimele\' trebuie sa fie numar intreg'
 
 
@@ -139,7 +152,7 @@ def log(request):
 
 
 		mesaj += '<section><h2>Parametrii:</h2>\n<ul>\n'
-		numar_parametri = 0
+		# numar_parametri = 0
 		for i, j in request.accesare.parametri.items():
 			mesaj += f"<li>{i}: {j}</li>"
 
@@ -212,7 +225,7 @@ def log(request):
 	context = {
 		"mesaj" : mesaj
 	}
-	
+	messages.success(request, "S-au afisat informatii corespunzator.")
 	return render(request, 'aplicatie_magazin/log.html', context)
 
 
@@ -262,15 +275,34 @@ def despre(request):
 
 
 def accesare(request, id):
-	id = int(id)
+	if not settings.DEBUG:
+			raise Http404("Pagina nu exista")
+	
+	messages.debug(request, 'Suntem in mediul debug.')	
+	# messages.debug(request, "Acesta este un mesaj de depanare. :( ")
+	messages.info(request, "Site -ul este inca in functiune :) ")
 
-	rasp = ''
-	for accesare in Accesare.logs:	
-		if accesare.id == id:
-			rasp = str(accesare)
-			break
+	
+	try:
+		id = int(id)
 
-	return HttpResponse(rasp)
+		rasp = ''
+		if id >= len(Accesare.logs):
+			messages.warning(request, "Nu incerca sa pui un id prea mare, comportament nepredictibil")
+		for accesare in Accesare.logs:	
+			if accesare.id == id:
+				rasp = str(accesare)
+				break
+
+	except:
+		messages.error(request, "Id invalid")
+		
+
+	messages.success(request, "Actiunea a avut succes! :D ")
+	# messages.warning(request, "Acesta este un avertisment. :| ")
+
+		
+	return render(request, 'aplicatie_magazin/accesare.html', {'rasp' : rasp, 'titlu' : "Accesare"})
 
 
 

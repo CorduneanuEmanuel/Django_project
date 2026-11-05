@@ -1,0 +1,22 @@
+{% extends "aplicatie_magazin/baza.html" %}
+
+{% block content %}
+
+	<section>
+        {% if messages %}
+
+            <p>Emi</p>
+            {% for message in messages %}
+
+                <p>{{ message }}</p>
+
+            {% endfor %}
+            
+            {% endif %}
+        {{rasp | safe}}
+
+
+    </section>
+
+
+{% endblock %}

@@ -1,0 +1,7 @@
+CREATE USER emanuel WITH ENCRYPTED PASSWORD 'emanuel';
+GRANT ALL ON DATABASE django_magazin TO emanuel ;
+ALTER ROLE emanuel SET search_path = django, public;
+GRANT ALL ON SCHEMA django to emanuel ;
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA django TO emanuel ;
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA django TO emanuel ;
+GRANT ALL PRIVILEGES ON ALL FUNCTIONS IN SCHEMA django TO emanuel ;

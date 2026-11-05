@@ -10,7 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.1/ref/settings/
 """
 
+from django.contrib.messages import constants as message_constants
 from pathlib import Path
+
 import os
 
 
@@ -28,6 +30,9 @@ SECRET_KEY = 'django-insecure-e2k673z03*p#0n#7ahnmo+bi*pthh$$*oe111-8!+l3@v86tb&
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+MESSAGE_LEVEL = message_constants.DEBUG
 
 COMPANY_INFO = {
     'name': 'Surub Expert',
@@ -49,6 +54,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'aplicatie_magazin.apps.AplicatieMagazinConfig',
+
 ]
 
 MIDDLEWARE = [
@@ -59,7 +65,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'aplicatie_magazin.middleware.Middleware_accesarePagina'
+    'aplicatie_magazin.middleware.Middleware_accesarePagina',
+    
+
 ]
 
 ROOT_URLCONF = 'magazin.urls'
@@ -108,7 +116,7 @@ DATABASES = {
         'OPTIONS': { # dicționar cu opțiunile de conectare
                 'options': '-c search_path=django' # schema din cadrul bazei de date (în acest caz, "django")
         },
-        'NAME': 'django',     # un string cu numele bazei de date
+        'NAME': 'django_magazin',     # un string cu numele bazei de date
         'USER': 'emanuel',      # username-ul pentru conexiunea la baza de date
         'PASSWORD': 'emanuel',  # parola userului creat în baza de date, cu care ne vom conecta
         'HOST': 'localhost',  # IP-ul serverului bazei de date (poate fi și localhost)
@@ -153,7 +161,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR / "static"]
+STATICFILES_DIRS = [BASE_DIR / "static",]
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # Email
@@ -164,3 +172,16 @@ MAILERS = {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
 }
+
+
+MESSAGE_TAGS = {
+    message_constants.DEBUG: 'debug',
+    message_constants.INFO: 'info',
+    message_constants.SUCCESS: 'success',
+    message_constants.WARNING: 'warning',
+    message_constants.ERROR: 'fail',
+}
+
+
+MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = '/media/'
