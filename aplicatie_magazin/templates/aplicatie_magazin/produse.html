@@ -1,0 +1,51 @@
+{% extends "aplicatie_magazin/baza.html" %}
+{% load static %}
+
+{% block content %}
+<section class="lista-produse">
+    <div class="introducere-produse">
+        <h1>Toate produsele</h1>
+        <p>Descopera produsele disponibile pentru proiectele tale.</p>
+    </div>
+
+    <div class="chenare-produse">
+        {% for produs in produse %}
+        
+        <article class="produs">
+            
+            {% if produs.imagine %}
+                <img class="poza-produs" src="{{ produs.imagine.url }}">
+            {% else %}
+                <img class="poza-produs" src="{% static 'images/imagine-indisponibila.svg' %}" alt="Imagine indisponibila">
+            {% endif %}
+
+            <div class="informatii-produs">
+                <span class="categoria-produsului">
+                    {% if produs.categorie %}
+                        {{ produs.categorie }}
+                    {% else %}Categorie nespecificata
+                    {% endif %}
+                </span>
+                <h2>{{ produs.nume_produs }}</h2>
+                <p class="denumirea-produsului">{{ produs.denumire }}</p>
+                <dl class="caracteristici-produs">
+                    {% if produs.material %}
+                        <div><dt>Material</dt><dd>{{ produs.material }}</dd></div>
+                    {% endif %}
+                    {% if produs.diametru_mm %}
+                        <div><dt>Diametru</dt><dd>{{ produs.diametru_mm }}mm</dd></div>
+                    {% endif %}
+                    {% if produs.lungime_mm %}
+                        <div><dt>Lungime</dt><dd>{{ produs.lungime_mm }}mm</dd></div>
+                    {% endif %}
+                    <div><dt>Stoc</dt><dd>{{ produs.stoc }} buc.</dd></div>
+                </dl>
+                <p class="pret-produs">{{ produs.pret }} lei</p>
+            </div>
+        </article>
+        {% empty %}
+            <p class="fara-produse">Nu exista produse disponibile momentan</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

@@ -243,3 +243,6 @@ class Categorie(models.Model):
     
     def __str__(self):
         return self.nume
+
+
+

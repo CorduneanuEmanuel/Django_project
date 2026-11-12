@@ -16,6 +16,8 @@ body {
     background-color: #16324f;
     position: sticky;
     top: 0;
+    z-index: 1000;
+    isolation: isolate;
 }
 
 .header-container {
@@ -59,6 +61,7 @@ body {
     border-radius: 0;
     list-style: none;
     display: none;
+    z-index: 1001;
 }
 
 .main-nav > ul > li > a {
@@ -171,4 +174,3 @@ footer p {
 .footer-info > div {
     min-width: 220px;
 }
-

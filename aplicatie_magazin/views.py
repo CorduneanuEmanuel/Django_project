@@ -1,10 +1,12 @@
 from django.http import HttpResponse
+from django.core.mail import send_mail
 from django.shortcuts import render 
 from django.contrib import messages
 from django.conf import settings
 from django.http import Http404
 from datetime import datetime
 from .middleware import Accesare
+from .models import Produs
 import locale
 
 WEEK_DAY_ROMANIAN = (
@@ -35,8 +37,25 @@ MONTH_DAY_ROMANIAN = (
 REQUESTS = 0
 
 
+def trimite_email():
+    send_mail(
+        subject='Salutare!',
+        message='Salut. Ce mai faci?',
+        html_message='<h1>Salut</h1><p>Ce mai faci?</p>',
+        from_email='naspa <Emanuel.Corduneanu@gmail.com>',
+        recipient_list=['corduneanuemanuel1@gmail.com'],
+        fail_silently=False,
+    )
+
+
 def index(request):
+	trimite_email()
 	return render(request, "aplicatie_magazin/pagina_principala.html")
+
+
+def produse(request):
+	produse_site = Produs.objects.select_related('categorie', 'brand').all()
+	return render(request, "aplicatie_magazin/produse.html", {"produse": produse_site, "title": "Produsele noastre"})
 
 
 def calculeaza_data(data = ''):

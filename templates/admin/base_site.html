@@ -1,0 +1,24 @@
+{% extends "admin/base.html" %}
+{% load static %}
+{% block extrahead %}
+{{ block.super }}
+<style>
+    :root {
+        --admin-page-background: #f3f6fb;
+        --admin-menu-background: #202b3c;
+        --admin-menu-hover: #34445d;
+        --admin-selected-row: #d7ebff;
+        --admin-breadcrumbs-background: #2f80ed;
+    }
+
+  
+</style>
+
+{% endblock %}
+
+{% block branding %}
+    <img src="{% static 'images/logo_pagina.ico' %}" style="display: inline-block; width: auto; max-width: 100%; height: 32px; object-fit: contain;">
+    <p>SurubExpert</p>
+
+    {{ block.super }}
+{% endblock %}
